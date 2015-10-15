@@ -91,7 +91,7 @@
 {
     NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:6];
     if ([imageA isKindOfClass:[UIImage class]]) {
-        json[@"imageA"] = [self imageBase64String:imageB];
+        json[@"imageA"] = [self imageBase64String:imageA];
     } else if ([imageA isKindOfClass:[NSString class]]) {
         json[@"urlA"] = imageA;
     }
@@ -231,10 +231,17 @@
     [self sendRequest:json mothod:@"/api/newperson" successBlock:successBlock failureBlock:failureBlock];
 }
 #pragma mark - ID OCR
-- (void)idcardOcr:(UIImage *)image cardType:(NSInteger)cardType sessionId:(NSString *)sessionId successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock
+- (void)idcardOcr:(id)image cardType:(NSInteger)cardType sessionId:(NSString *)sessionId successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock
 {
     NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:10];
-    json[@"card"] = [self imageBase64String:image];
+    
+    if ([image isKindOfClass:[UIImage class]]) {
+        json[@"card"] = [self imageBase64String:image];
+    } else if ([image isKindOfClass:[NSString class]]) {
+        json[@"url"] = image;
+    }
+    
+    
     json[@"card_type"] = @(cardType);
     if (sessionId.length > 0) {
         json[@"session_id"] = sessionId;
@@ -250,7 +257,9 @@
         json[@"image"] = [self imageBase64String:image];
     } else if ([image isKindOfClass:[NSString class]]) {
         json[@"url"] = image;
-        json[@"cookie"] = cookie;
+        if (cookie != nil) {
+            json[@"cookie"] = cookie;
+        }
     }
     if (seq.length > 0) {
         json[@"seq"] = seq;
@@ -265,7 +274,9 @@
         json[@"image"] = [self imageBase64String:image];
     } else if ([image isKindOfClass:[NSString class]]) {
         json[@"url"] = image;
-        json[@"cookie"] = cookie;
+        if (cookie != nil) {
+            json[@"cookie"] = cookie;
+        }
     }
     if (seq.length > 0) {
         json[@"seq"] = seq;
@@ -279,7 +290,9 @@
         json[@"image"] = [self imageBase64String:image];
     } else if ([image isKindOfClass:[NSString class]]) {
         json[@"url"] = image;
-        json[@"cookie"] = cookie;
+        if (cookie != nil) {
+            json[@"cookie"] = cookie;
+        }
     }
     if (seq.length > 0) {
         json[@"seq"] = seq;
@@ -293,7 +306,9 @@
         json[@"image"] = [self imageBase64String:image];
     } else if ([image isKindOfClass:[NSString class]]) {
         json[@"url"] = image;
-        json[@"cookie"] = cookie;
+        if (cookie != nil) {
+            json[@"cookie"] = cookie;
+        }
     }
     if (seq.length > 0) {
         json[@"seq"] = seq;
