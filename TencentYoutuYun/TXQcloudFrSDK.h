@@ -189,6 +189,15 @@ typedef void(^HttpRequestFailBlock)(NSError *error);
  *            请求序列号，用于流水查询
  */
 - (void)idcardOcr:(UIImage *)image cardType:(NSInteger)cardType sessionId:(NSString *)sessionId successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+/*!
+ * 名片OCR识别
+ *
+ * @input image
+ *            输入图片
+ * @input sessionId
+ *            请求序列号，用于流水查询
+ */
+- (void)namecardOcr:(UIImage *)image sessionId:(NSString *)sessionId successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 #pragma mark - Image Recognition
 /*!
  * 判断一个图像的模糊程度

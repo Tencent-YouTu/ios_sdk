@@ -20,6 +20,7 @@
 		D456A5EF1BA7FA3E008A0CF0 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = D456A5EE1BA7FA3E008A0CF0 /* NSData+Base64.m */; };
 		D456A5F31BA80917008A0CF0 /* face.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D456A5F11BA80917008A0CF0 /* face.jpg */; };
 		D456A5F41BA80917008A0CF0 /* id.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D456A5F21BA80917008A0CF0 /* id.jpg */; };
+		D4AD6B691CC6132400ECF132 /* namecard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4AD6B681CC6132400ECF132 /* namecard.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		D456A5EE1BA7FA3E008A0CF0 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		D456A5F11BA80917008A0CF0 /* face.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face.jpg; sourceTree = "<group>"; };
 		D456A5F21BA80917008A0CF0 /* id.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = id.jpg; sourceTree = "<group>"; };
+		D4AD6B681CC6132400ECF132 /* namecard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = namecard.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 		D456A5F01BA80917008A0CF0 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D4AD6B681CC6132400ECF132 /* namecard.jpg */,
 				D456A5F11BA80917008A0CF0 /* face.jpg */,
 				D456A5F21BA80917008A0CF0 /* id.jpg */,
 			);
@@ -253,6 +256,7 @@
 				D456A5CA1BA7F635008A0CF0 /* LaunchScreen.xib in Resources */,
 				D456A5E51BA7F769008A0CF0 /* DemoViewController.xib in Resources */,
 				D456A5F31BA80917008A0CF0 /* face.jpg in Resources */,
+				D4AD6B691CC6132400ECF132 /* namecard.jpg in Resources */,
 				D456A5C71BA7F635008A0CF0 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +470,7 @@
 				D456A5DB1BA7F635008A0CF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D456A5DC1BA7F635008A0CF0 /* Build configuration list for PBXNativeTarget "YoutuYunDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +479,7 @@
 				D456A5DE1BA7F635008A0CF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

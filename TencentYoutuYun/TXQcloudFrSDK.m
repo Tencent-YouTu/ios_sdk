@@ -248,6 +248,20 @@
     }
     [self sendRequest:json mothod:@"/ocrapi/idcardocr" successBlock:successBlock failureBlock:failureBlock];
 }
+- (void)namecardOcr:(UIImage *)image sessionId:(NSString *)sessionId successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock
+{
+    NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:10];
+    
+    if ([image isKindOfClass:[UIImage class]]) {
+        json[@"image"] = [self imageBase64String:image];
+    } else if ([image isKindOfClass:[NSString class]]) {
+        json[@"url"] = image;
+    }
+    if (sessionId.length > 0) {
+        json[@"session_id"] = sessionId;
+    }
+    [self sendRequest:json mothod:@"/ocrapi/namecardocr" successBlock:successBlock failureBlock:failureBlock];
+}
 
 #pragma mark - Image Recognition
 - (void)fuzzyDetect:(id)image cookie:(NSString *)cookie seq:(NSString *)seq successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock

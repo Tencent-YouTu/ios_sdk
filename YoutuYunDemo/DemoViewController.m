@@ -31,9 +31,10 @@
     
     sdk.API_END_POINT = @"http://api.youtu.qq.com/youtu";
     
-    UIImage *local = [UIImage imageNamed:@"face.jpg"];
+//    UIImage *local = [UIImage imageNamed:@"id.jpg"];
+    UIImage *local = [UIImage imageNamed:@"namecard.jpg"];
     NSString *remote = @"http://a.hiphotos.baidu.com/image/pic/item/42166d224f4a20a4be2c49a992529822720ed0aa.jpg";
-    id image = remote;
+    id image = local;
     
 //    [sdk detectFace:image successBlock:^(id responseObject) {
 //        NSLog(@"responseObject: %@", responseObject);
@@ -41,11 +42,17 @@
 //        NSLog(@"error");
 //    }];
 //    
-//    [sdk idcardOcr:image cardType:1 sessionId:nil successBlock:^(id responseObject) {
-//        NSLog(@"responseObject: %@", responseObject);
-//    } failureBlock:^(NSError *error) {
-//        
-//    }];
+    [sdk idcardOcr:image cardType:1 sessionId:nil successBlock:^(id responseObject) {
+        NSLog(@"idcardOcr: %@", responseObject);
+    } failureBlock:^(NSError *error) {
+        
+    }];
+//
+    [sdk namecardOcr:image sessionId:nil successBlock:^(id responseObject) {
+        NSLog(@"namecardOcr: %@", responseObject);
+    } failureBlock:^(NSError *error) {
+        
+    }];
 //    [sdk imageTag:image cookie:nil seq:nil successBlock:^(id responseObject) {
 //        NSLog(@"responseObject: %@", responseObject);
 //    } failureBlock:^(NSError *error) {
@@ -63,11 +70,11 @@
 //    } failureBlock:^(NSError *error) {
 //        
 //    }];
-    [sdk fuzzyDetect:image cookie:nil seq:nil successBlock:^(id responseObject) {
-        NSLog(@"responseObject: %@", responseObject);
-    } failureBlock:^(NSError *error) {
-        
-    }];
+//    [sdk fuzzyDetect:image cookie:nil seq:nil successBlock:^(id responseObject) {
+//        NSLog(@"responseObject: %@", responseObject);
+//    } failureBlock:^(NSError *error) {
+//        
+//    }];
 }
 
 - (void)didReceiveMemoryWarning
