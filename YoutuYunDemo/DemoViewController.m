@@ -32,7 +32,7 @@
     sdk.API_END_POINT = @"http://api.youtu.qq.com/youtu";
     
 //    UIImage *local = [UIImage imageNamed:@"id.jpg"];
-    UIImage *local = [UIImage imageNamed:@"namecard.jpg"];
+    UIImage *local = [UIImage imageNamed:@"id.jpg"];
     NSString *remote = @"http://a.hiphotos.baidu.com/image/pic/item/42166d224f4a20a4be2c49a992529822720ed0aa.jpg";
     id image = local;
     
@@ -42,7 +42,7 @@
 //        NSLog(@"error");
 //    }];
 //    
-    [sdk idcardOcr:image cardType:1 sessionId:nil successBlock:^(id responseObject) {
+    [sdk idcardOcr:image cardType:0 sessionId:nil successBlock:^(id responseObject) {
         NSLog(@"idcardOcr: %@", responseObject);
     } failureBlock:^(NSError *error) {
         
