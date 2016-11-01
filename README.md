@@ -18,13 +18,13 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
   2. 在http://open.youtu.qq.com/welcome/developer#/api-summary 阅读发送参数、返回结果含义
   3. 请联系我们
 
-名词：
-• AppId 平台添加应用后分配的AppId
-• SecretId 平台添加应用后分配的SecretId
-• SecretKey 平台添加应用后分配的SecretKey
-• 签名 接口鉴权凭证，由AppId、SecretId、SecretKey等生成，详见	http://open.youtu.qq.com/welcome/new-authentication
+##名词：
+- AppId 平台添加应用后分配的AppId
+- SecretId 平台添加应用后分配的SecretId
+- SecretKey 平台添加应用后分配的SecretKey
+- 签名 接口鉴权凭证，由AppId、SecretId、SecretKey等生成，详见	http://open.youtu.qq.com/welcome/new-authentication
 
-接口说明：
+##接口说明：
 构造方法
 - (id)initWithName:(NSString *)_appid authorization:(NSString *)_authorization;
 参数：
