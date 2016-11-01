@@ -25,6 +25,7 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 - 签名 接口鉴权凭证，由AppId、SecretId、SecretKey等生成，详见	http://open.youtu.qq.com/welcome/new-authentication
 
 ##接口说明：
+```
 构造方法
 - -(id)initWithName:(NSString *)_appid authorization:(NSString *)_authorization;
 参数：
@@ -206,6 +207,7 @@ seq 请求序列号，用于流水查询
 image 输入图片
 cookie 当imagePath为url时，需要的cookie信息
 seq 请求序列号，用于流水查询
+```
 
 
 
