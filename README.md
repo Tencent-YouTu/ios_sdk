@@ -25,17 +25,17 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 - 签名 接口鉴权凭证，由AppId、SecretId、SecretKey等生成，详见	http://open.youtu.qq.com/welcome/new-authentication
 
 ##接口说明：
-```
-构造方法
-- -(id)initWithName:(NSString *)_appid authorization:(NSString *)_authorization;
-参数：
-appid授权appid
-Authorization　通过appid secretId和secretKey生成的鉴权密钥
 
-人脸检测，检测给定图片(Image)中的所有人脸(Face)的位置和相应的面部属性。位置包括(x, y, w, h)， 面部属性包括性别(gender), 年龄(age), 表情(expression), 眼镜(glass)和姿态(pitch，roll，yaw).
-- -(void)detectFace:(id)image successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
-参数：
-image 人脸图片
+	构造方法
+	- -(id)initWithName:(NSString *)_appid authorization:(NSString *)_authorization;
+	参数：
+	appid授权appid
+	Authorization　通过appid secretId和secretKey生成的鉴权密钥
+
+	人脸检测，检测给定图片(Image)中的所有人脸(Face)的位置和相应的面部属性。位置包括(x, y, w, h)， 面部属性包括性别(gender), 年龄(age), 表情(expression), 眼镜(glass)和姿态(pitch，roll，yaw).
+	- -(void)detectFace:(id)image successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+	参数：
+	image 人脸图片
 
 五官定位
 - -(void)faceShape:(id)image successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
@@ -207,7 +207,6 @@ seq 请求序列号，用于流水查询
 image 输入图片
 cookie 当imagePath为url时，需要的cookie信息
 seq 请求序列号，用于流水查询
-```
 
 
 
