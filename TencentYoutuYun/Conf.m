@@ -20,4 +20,12 @@
     return singleton;
 }
 
+-(instancetype)init{
+    self = [super init];
+    _appId = @"123456";                                   // 替换APP_ID
+    _secretId = @"aaaaa";    // 替换SECRET_ID
+    _secretKey = @"bbbbb";       // 替换SECRET_KEY
+    return self;
+}
+
 @end

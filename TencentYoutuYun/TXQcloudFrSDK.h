@@ -198,6 +198,73 @@ typedef void(^HttpRequestFailBlock)(NSError *error);
  *            请求序列号，用于流水查询
  */
 - (void)namecardOcr:(UIImage *)image sessionId:(NSString *)sessionId successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+
+#pragma mark - FaceIn
+/*!
+ * 身份证OCR识别
+ *
+ * @input image
+ *            输入图片
+ * @input cardType
+ *            身份证图片类型，0-正面，1-反面
+ */
+- (void)idcardOcrFaceIn:(id)image cardType:(NSInteger)cardType successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+/*!
+ * 人脸比对
+ *
+ * @input imageA
+ *            输入图片A
+ * @input imageB
+ *            输入图片B
+ */
+- (void)faceCompareFaceIn:(id)imageA imageB:(id)imageB successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+
+/*!
+ * 人脸比对:使用优图数据源比对
+ *
+ * @input idCardNumber
+ *            用户身份证号码
+ * @input idCardName
+ *            用户身份证姓名
+ @input image
+ *            输入图片
+ */
+-(void)idcardfacecompare:(NSString*)idCardNumber withName:(NSString*)idCardName image:(id)image successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+/*!
+ * 唇语获取
+ *
+ */
+- (void)livegetfour:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+
+/*!
+ * 视频人脸核身:用户自带数据源核身
+ *
+ * @input video
+ *            需要检测的视频base64编码
+ * @input validateData
+ *            livegetfour得到的唇语验证数据
+ @input image
+ *            输入图片
+ @input imisCompare
+ *            video中的照片和card是否做对比，True做对比，False不做对比
+ */
+- (void)livedetectfour:(NSData*)video image:(id)image validateId:(NSString*) validateData isCompare:(BOOL)isCompare successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+
+/*!
+ * 视频人脸核身:使用优图数据源核身
+ *
+ * @input video
+ *            需要检测的视频base64编码
+ * @input idCardNumber
+ *            用户身份证号码
+ * @input idCardName
+ *            用户身份证姓名
+ * @input validateData
+ *            livegetfour得到的唇语验证数据
+ */
+-(void)idcardlivedetectfour:(NSData*)video withId:(NSString*)idCardNumber withName:(NSString*)idCardName validateId:(NSString*) validateData successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+
+
 #pragma mark - Image Recognition
 /*!
  * 判断一个图像的模糊程度

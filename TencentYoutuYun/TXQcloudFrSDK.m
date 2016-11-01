@@ -10,6 +10,9 @@
 #import "TXQcloudFrSDK.h" 
 #import "NSData+Base64.h"
 
+#define HOST_VIP @"https://vip-api.youtu.qq.com/youtu"
+//#define HOST_VIP @"http://140.206.160.161:18082/youtu"
+
 @implementation TXQcloudFrSDK
 @synthesize API_END_POINT      = _API_END_POINT;
 @synthesize appid      = _appid;
@@ -18,7 +21,7 @@
 
 - (id)initWithName:(NSString *)appId authorization:(NSString *)_authCode{
     if(self = [super init]){
-        self.API_END_POINT = @"https://youtu.api.qcloud.com/youtu";
+        self.API_END_POINT = @"http://api.youtu.qq.com/youtu";
         self.appid = appId;
         self.authorization = _authCode;
     }
@@ -230,6 +233,7 @@
     }
     [self sendRequest:json mothod:@"/api/newperson" successBlock:successBlock failureBlock:failureBlock];
 }
+
 #pragma mark - ID OCR
 - (void)idcardOcr:(id)image cardType:(NSInteger)cardType sessionId:(NSString *)sessionId successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock
 {
@@ -262,6 +266,94 @@
     }
     [self sendRequest:json mothod:@"/ocrapi/namecardocr" successBlock:successBlock failureBlock:failureBlock];
 }
+
+#pragma mark - Face In
+- (void)idcardOcrFaceIn:(id)image cardType:(NSInteger)cardType successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock
+{
+    self.API_END_POINT = HOST_VIP;
+    
+    NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:10];
+    
+    if ([image isKindOfClass:[UIImage class]]) {
+        json[@"image"] = [self imageBase64String:image];
+    } else if ([image isKindOfClass:[NSString class]]) {
+        json[@"url"] = image;
+    }
+    
+    json[@"card_type"] = @(cardType);
+    [self sendRequest:json mothod:@"/ocrapi/idcardocr" successBlock:successBlock failureBlock:failureBlock];
+}
+
+- (void)faceCompareFaceIn:(id)imageA imageB:(id)imageB successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock
+{
+    self.API_END_POINT = HOST_VIP;
+    
+    NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:6];
+    if ([imageA isKindOfClass:[UIImage class]]) {
+        json[@"imageA"] = [self imageBase64String:imageA];
+    } else if ([imageA isKindOfClass:[NSString class]]) {
+        json[@"urlA"] = imageA;
+    }
+    if ([imageB isKindOfClass:[UIImage class]]) {
+        json[@"imageB"] = [self imageBase64String:imageB];
+    } else if ([imageB isKindOfClass:[NSString class]]) {
+        json[@"urlB"] = imageB;
+    }
+    [self sendRequest:json mothod:@"/api/facecompare" successBlock:successBlock failureBlock:failureBlock];
+}
+
+-(void)idcardfacecompare:(NSString*)idCardNumber withName:(NSString*)idCardName image:(id)image successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock{
+    self.API_END_POINT = HOST_VIP;
+    NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:6];
+    json[@"idcard_number"] = idCardNumber;
+    json[@"idcard_name"] = idCardName;
+    if ([image isKindOfClass:[UIImage class]]) {
+        json[@"image"] = [self imageBase64String:image];
+    } else if ([image isKindOfClass:[NSString class]]) {
+        json[@"url"] = image;
+    }
+    
+    [self sendRequest:json mothod:@"/openliveapi/idcardfacecompare" successBlock:successBlock failureBlock:failureBlock];
+}
+
+-(void)livegetfour:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock{
+    self.API_END_POINT = HOST_VIP;
+    NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:6];
+    [self sendRequest:json mothod:@"/openliveapi/livegetfour" successBlock:successBlock failureBlock:failureBlock];
+    
+}
+
+-(void)livedetectfour:(NSData*)video image:(id)image validateId:(NSString*) validateData isCompare:(BOOL)isCompare successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock{
+    self.API_END_POINT = HOST_VIP;
+    NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:6];
+    json[@"video"] = [video base64String];
+    json[@"validate_data"] = validateData;
+    json[@"compare_flag"] = @(isCompare);
+    if ([image isKindOfClass:[UIImage class]]) {
+        json[@"card"] = [self imageBase64String:image];
+    }
+//    } else if ([image isKindOfClass:[NSString class]]) {
+//        json[@"url"] = image;
+//    }
+    
+    [self sendRequest:json mothod:@"/openliveapi/livedetectfour" successBlock:successBlock failureBlock:failureBlock];
+    
+    
+}
+
+-(void)idcardlivedetectfour:(NSData*)video withId:(NSString*)idCardNumber withName:(NSString*)idCardName validateId:(NSString*) validateData successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock{
+    
+    self.API_END_POINT = HOST_VIP;
+    NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:6];
+    json[@"video"] = [video base64String];
+    json[@"idcard_number"] = idCardNumber;
+    json[@"idcard_name"] = idCardName;
+    json[@"validate_data"] = validateData;
+    
+    [self sendRequest:json mothod:@"/openliveapi/idcardlivedetectfour" successBlock:successBlock failureBlock:failureBlock];
+    
+}
+
 
 #pragma mark - Image Recognition
 - (void)fuzzyDetect:(id)image cookie:(NSString *)cookie seq:(NSString *)seq successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock
