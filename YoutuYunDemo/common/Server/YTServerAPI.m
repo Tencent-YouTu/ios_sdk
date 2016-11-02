@@ -4,6 +4,9 @@
 //
 //  Created by Patrick Yang on 15/7/14.
 //  Copyright (c) 2015年 Tencent. All rights reserved.
+
+
+//人脸核身相关接口调用
 //
 
 #import "YTServerAPI.h"

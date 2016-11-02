@@ -199,9 +199,9 @@ typedef void(^HttpRequestFailBlock)(NSError *error);
  */
 - (void)namecardOcr:(UIImage *)image sessionId:(NSString *)sessionId successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 
-#pragma mark - FaceIn
+#pragma mark - FaceIn人脸核身相关接口
 /*!
- * 身份证OCR识别
+ * 身份证OCR识别-----人脸核身相关接口
  *
  * @input image
  *            输入图片
@@ -210,7 +210,7 @@ typedef void(^HttpRequestFailBlock)(NSError *error);
  */
 - (void)idcardOcrFaceIn:(id)image cardType:(NSInteger)cardType successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 /*!
- * 人脸比对
+ * 人脸比对-----人脸核身相关接口
  *
  * @input imageA
  *            输入图片A
@@ -220,7 +220,7 @@ typedef void(^HttpRequestFailBlock)(NSError *error);
 - (void)faceCompareFaceIn:(id)imageA imageB:(id)imageB successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 
 /*!
- * 人脸比对:使用优图数据源比对
+ * 人脸比对:使用优图数据源比对-----人脸核身相关接口
  *
  * @input idCardNumber
  *            用户身份证号码
@@ -231,13 +231,13 @@ typedef void(^HttpRequestFailBlock)(NSError *error);
  */
 -(void)idcardfacecompare:(NSString*)idCardNumber withName:(NSString*)idCardName image:(id)image successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 /*!
- * 唇语获取
+ * 唇语获取-----人脸核身相关接口
  *
  */
 - (void)livegetfour:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 
 /*!
- * 视频人脸核身:用户自带数据源核身
+ * 视频人脸核身:用户自带数据源核身-----人脸核身相关接口
  *
  * @input video
  *            需要检测的视频base64编码
@@ -251,7 +251,7 @@ typedef void(^HttpRequestFailBlock)(NSError *error);
 - (void)livedetectfour:(NSData*)video image:(id)image validateId:(NSString*) validateData isCompare:(BOOL)isCompare successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 
 /*!
- * 视频人脸核身:使用优图数据源核身
+ * 视频人脸核身:使用优图数据源核身-----人脸核身相关接口
  *
  * @input video
  *            需要检测的视频base64编码
