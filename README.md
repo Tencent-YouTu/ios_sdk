@@ -37,8 +37,7 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 
 
 ## 使用示例
-
-##### 设置APP 鉴权信息
+- 设置APP 鉴权信息
 		Conf.m里设置自己申请的 APP_ID, SECRET_ID, SECRET_KEY
 		-(instancetype)init{
     		self = [super init];
@@ -50,7 +49,7 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
     		return self;
 		}
 	
-##### 根据你使用的平台选择一种初始化方式
+- 根据你使用的平台选择一种初始化方式
 	优图开放平台初始化
 	NSString *auth = [Auth appSign:1000000 userId:nil];
     TXQcloudFrSDK *sdk = [[TXQcloudFrSDK alloc] initWithName:[Conf instance].appId authorization:auth endPoint:[Conf instance].API_END_POINT];
