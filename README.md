@@ -37,8 +37,9 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 
 
 ## 使用示例
-	设置APP 鉴权信息
-	Conf.m里设置自己申请的 APP_ID, SECRET_ID, SECRET_KEY
+
+##### 设置APP 鉴权信息
+		Conf.m里设置自己申请的 APP_ID, SECRET_ID, SECRET_KEY
 		-(instancetype)init{
     		self = [super init];
     		_appId = @"your appid";        		// 替换APP_ID
@@ -49,7 +50,7 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
     		return self;
 		}
 	
-	根据你使用的平台选择一种初始化方式
+##### 根据你使用的平台选择一种初始化方式
 	优图开放平台初始化
 	NSString *auth = [Auth appSign:1000000 userId:nil];
     TXQcloudFrSDK *sdk = [[TXQcloudFrSDK alloc] initWithName:[Conf instance].appId authorization:auth endPoint:[Conf instance].API_END_POINT];
@@ -57,6 +58,16 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 	优图开放平台核身服务初始化（**核身服务目前仅支持核身专有接口,需要联系商务开通**）
 	NSString *auth = [Auth appSign:1000000 userId:nil];
     TXQcloudFrSDK *sdk = [[TXQcloudFrSDK alloc] initWithName:[Conf instance].appId authorization:auth endPoint:[Conf instance].API_VIP_END_POINT];
+    
+##### 调用示例
+    UIImage *local = [UIImage imageNamed:@"id.jpg"];
+    id image = local;
+    [sdk detectFace:image successBlock:^(id responseObject) {
+        NSLog(@"responseObject: %@", responseObject);
+    } failureBlock:^(NSError *error) {
+        NSLog(@"error");
+    }];
+    
 
 ##接口说明：
 
