@@ -25,7 +25,7 @@ typedef void(^HttpRequestFailBlock)(NSError *error);
  * @input authorization
  *            通过appid secretId和secretKey生成的鉴权密钥
 */
-- (id)initWithName:(NSString *)_appid authorization:(NSString *)_authorization;
+- (id)initWithName:(NSString *)appId authorization:(NSString *)_authCode endPoint:(NSString *)endpoint;
 /*!
  * 人脸属性分析 检测给定图片(Image)中的所有人脸(Face)的位置和相应的面部属性。位置包括(x, y, w, h)，
  * 面部属性包括性别(gender), 年龄(age), 表情(expression), 眼镜(glass)和姿态(pitch，roll，yaw).

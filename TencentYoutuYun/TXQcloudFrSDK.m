@@ -10,8 +10,6 @@
 #import "TXQcloudFrSDK.h" 
 #import "NSData+Base64.h"
 
-#define HOST_VIP @"https://vip-api.youtu.qq.com/youtu"
-//#define HOST_VIP @"http://140.206.160.161:18082/youtu"
 
 @implementation TXQcloudFrSDK
 @synthesize API_END_POINT      = _API_END_POINT;
@@ -19,9 +17,9 @@
 @synthesize authorization      = _authorization;
 
 
-- (id)initWithName:(NSString *)appId authorization:(NSString *)_authCode{
+- (id)initWithName:(NSString *)appId authorization:(NSString *)_authCode endPoint:(NSString *)endpoint{
     if(self = [super init]){
-        self.API_END_POINT = @"http://api.youtu.qq.com/youtu";
+        self.API_END_POINT = endpoint;
         self.appid = appId;
         self.authorization = _authCode;
     }
@@ -270,7 +268,6 @@
 #pragma mark - Face In
 - (void)idcardOcrFaceIn:(id)image cardType:(NSInteger)cardType successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock
 {
-    self.API_END_POINT = HOST_VIP;
     
     NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:10];
     
@@ -286,7 +283,6 @@
 
 - (void)faceCompareFaceIn:(id)imageA imageB:(id)imageB successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock
 {
-    self.API_END_POINT = HOST_VIP;
     
     NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:6];
     if ([imageA isKindOfClass:[UIImage class]]) {
@@ -303,7 +299,6 @@
 }
 
 -(void)idcardfacecompare:(NSString*)idCardNumber withName:(NSString*)idCardName image:(id)image successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock{
-    self.API_END_POINT = HOST_VIP;
     NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:6];
     json[@"idcard_number"] = idCardNumber;
     json[@"idcard_name"] = idCardName;
@@ -317,14 +312,12 @@
 }
 
 -(void)livegetfour:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock{
-    self.API_END_POINT = HOST_VIP;
     NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:6];
     [self sendRequest:json mothod:@"/openliveapi/livegetfour" successBlock:successBlock failureBlock:failureBlock];
     
 }
 
 -(void)livedetectfour:(NSData*)video image:(id)image validateId:(NSString*) validateData isCompare:(BOOL)isCompare successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock{
-    self.API_END_POINT = HOST_VIP;
     NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:6];
     json[@"video"] = [video base64String];
     json[@"validate_data"] = validateData;
@@ -342,8 +335,6 @@
 }
 
 -(void)idcardlivedetectfour:(NSData*)video withId:(NSString*)idCardNumber withName:(NSString*)idCardName validateId:(NSString*) validateData successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock{
-    
-    self.API_END_POINT = HOST_VIP;
     NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:6];
     json[@"video"] = [video base64String];
     json[@"idcard_number"] = idCardNumber;

@@ -49,72 +49,27 @@
     
     self.title = @"优图";
     
-    NSString *auth = [Auth appSign:1000000 userId:nil];
-    TXQcloudFrSDK *sdk = [[TXQcloudFrSDK alloc] initWithName:[Conf instance].appId authorization:auth];
+//    [self testFacein];
     
-    sdk.API_END_POINT = @"http://api.youtu.qq.com/youtu";
+    NSString *auth = [Auth appSign:1000000 userId:nil];
+    TXQcloudFrSDK *sdk = [[TXQcloudFrSDK alloc] initWithName:[Conf instance].appId authorization:auth endPoint:[Conf instance].API_END_POINT];
     
 //    UIImage *local = [UIImage imageNamed:@"id.jpg"];
     UIImage *local = [UIImage imageNamed:@"id.jpg"];
     NSString *remote = @"http://a.hiphotos.baidu.com/image/pic/item/42166d224f4a20a4be2c49a992529822720ed0aa.jpg";
     id image = local;
- 
-    
-//    [sdk idcardOcrFaceIn:image cardType:0 successBlock:^(id responseObject) {
-//                NSLog(@"idcardOcrFaceIn: %@", responseObject);
-//    }failureBlock:^(NSError *error) {
-//                NSLog(@"error");
-//    }];
-//    
-//    [sdk faceCompareFaceIn:image imageB:remote successBlock:^(id responseObject) {
-//        NSLog(@"faceCompareFaceIn: %@", responseObject);
-//    }failureBlock:^(NSError *error) {
-//        NSLog(@"error");
-//    }];
-//    
-//    [sdk idcardfacecompare: @"1123456789987654321" withName:@"王小明" image:image successBlock:^(id responseObject){
-//        NSLog(@"idcardfacecompare: %@", responseObject);
-//    }failureBlock:^(NSError *error) {
-//        NSLog(@"error");
-//    }];
-    
-    
-//    [sdk livegetfour:^(id responseObject){
-//        NSLog(@"livegetfour: %@", responseObject);
-//    }failureBlock:^(NSError *error) {
-//        NSLog(@"error");
-//    }];
-    
-//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"video" ofType:@"mp4"];
-//    NSData *video = [NSData dataWithContentsOfFile:filePath];
-//    [sdk livedetectfour:video image:image validateId:@"3388" isCompare:YES successBlock: ^(id responseObject){
-//        NSLog(@"livedetectfour: %@", responseObject);
-//    }failureBlock:^(NSError *error) {
-//        NSLog(@"error");
-//    }];
-    
-//    [sdk idcardlivedetectfour:video withId:@"1123456789987654321" withName:@"王小明" validateId:@"3388" successBlock: ^(id responseObject){
-//        NSLog(@"idcardlivedetectfour: %@", responseObject);
-//    }failureBlock:^(NSError *error) {
-//        NSLog(@"error");
-//    }];
 
-
-
-    
-
-    
     [sdk detectFace:image successBlock:^(id responseObject) {
         NSLog(@"responseObject: %@", responseObject);
     } failureBlock:^(NSError *error) {
         NSLog(@"error");
     }];
-    
-    [sdk idcardOcr:image cardType:0 sessionId:nil successBlock:^(id responseObject) {
-        NSLog(@"idcardOcr: %@", responseObject);
-    } failureBlock:^(NSError *error) {
-        
-    }];
+//
+//    [sdk idcardOcr:image cardType:0 sessionId:nil successBlock:^(id responseObject) {
+//        NSLog(@"idcardOcr: %@", responseObject);
+//    } failureBlock:^(NSError *error) {
+//        
+//    }];
 //
 //    [sdk namecardOcr:image sessionId:nil successBlock:^(id responseObject) {
 //        NSLog(@"namecardOcr: %@", responseObject);
@@ -145,6 +100,57 @@
 //    }];
 }
 
+//人脸核身相关接口调用
+- (void)testFacein{
+    NSString *auth = [Auth appSign:1000000 userId:nil];
+    TXQcloudFrSDK *sdk = [[TXQcloudFrSDK alloc] initWithName:[Conf instance].appId authorization:auth endPoint:[Conf instance].API_VIP_END_POINT];
+    
+    
+    //    UIImage *local = [UIImage imageNamed:@"id.jpg"];
+    UIImage *local = [UIImage imageNamed:@"id.jpg"];
+    NSString *remote = @"http://a.hiphotos.baidu.com/image/pic/item/42166d224f4a20a4be2c49a992529822720ed0aa.jpg";
+    id image = local;
+    
+    
+        [sdk idcardOcrFaceIn:image cardType:0 successBlock:^(id responseObject) {
+                    NSLog(@"idcardOcrFaceIn: %@", responseObject);
+        }failureBlock:^(NSError *error) {
+                    NSLog(@"error");
+        }];
+    //
+    //    [sdk faceCompareFaceIn:image imageB:remote successBlock:^(id responseObject) {
+    //        NSLog(@"faceCompareFaceIn: %@", responseObject);
+    //    }failureBlock:^(NSError *error) {
+    //        NSLog(@"error");
+    //    }];
+    //
+    //    [sdk idcardfacecompare: @"1123456789987654321" withName:@"王小明" image:image successBlock:^(id responseObject){
+    //        NSLog(@"idcardfacecompare: %@", responseObject);
+    //    }failureBlock:^(NSError *error) {
+    //        NSLog(@"error");
+    //    }];
+    
+    
+    //    [sdk livegetfour:^(id responseObject){
+    //        NSLog(@"livegetfour: %@", responseObject);
+    //    }failureBlock:^(NSError *error) {
+    //        NSLog(@"error");
+    //    }];
+    
+    //    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"video" ofType:@"mp4"];
+    //    NSData *video = [NSData dataWithContentsOfFile:filePath];
+    //    [sdk livedetectfour:video image:image validateId:@"3388" isCompare:YES successBlock: ^(id responseObject){
+    //        NSLog(@"livedetectfour: %@", responseObject);
+    //    }failureBlock:^(NSError *error) {
+    //        NSLog(@"error");
+    //    }];
+    
+    //    [sdk idcardlivedetectfour:video withId:@"1123456789987654321" withName:@"王小明" validateId:@"3388" successBlock: ^(id responseObject){
+    //        NSLog(@"idcardlivedetectfour: %@", responseObject);
+    //    }failureBlock:^(NSError *error) {
+    //        NSLog(@"error");
+    //    }];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

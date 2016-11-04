@@ -35,10 +35,34 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 - SecretKey 平台添加应用后分配的SecretKey
 - 签名 接口鉴权凭证，由AppId、SecretId、SecretKey等生成，详见	http://open.youtu.qq.com/welcome/new-authentication
 
+
+## 使用示例
+
+##### 设置APP 鉴权信息
+		Conf.m里设置自己申请的 APP_ID, SECRET_ID, SECRET_KEY
+		-(instancetype)init{
+    		self = [super init];
+    		_appId = @"your appid";        		// 替换APP_ID
+    		_secretId = @"your secretId";    	// 替换SECRET_ID
+    		_secretKey = @"your secretkey";   	// 替换SECRET_KEY
+    		_API_END_POINT = API_END_POINT;
+    		_API_VIP_END_POINT = API_VIP_END_POINT;
+    		return self;
+		}
+	
+##### 根据你使用的平台选择一种初始化方式
+	优图开放平台初始化
+	NSString *auth = [Auth appSign:1000000 userId:nil];
+    TXQcloudFrSDK *sdk = [[TXQcloudFrSDK alloc] initWithName:[Conf instance].appId authorization:auth endPoint:[Conf instance].API_END_POINT];
+
+	优图开放平台核身服务初始化（**核身服务目前仅支持核身专有接口,需要联系商务开通**）
+	NSString *auth = [Auth appSign:1000000 userId:nil];
+    TXQcloudFrSDK *sdk = [[TXQcloudFrSDK alloc] initWithName:[Conf instance].appId authorization:auth endPoint:[Conf instance].API_VIP_END_POINT];
+
 ##接口说明：
 
 	构造方法
-	- (id)initWithName:(NSString *)_appid authorization:(NSString *)_authorization;
+	- (id)initWithName:(NSString *)_appid authorization:(NSString *)_authorization endPoint:(NSString *)endpoint;
 	参数：
 	appid授权appid
 	Authorization　通过appid secretId和secretKey生成的鉴权密钥
