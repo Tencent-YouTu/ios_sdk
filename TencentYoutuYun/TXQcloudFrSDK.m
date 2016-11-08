@@ -238,7 +238,7 @@
     NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:10];
     
     if ([image isKindOfClass:[UIImage class]]) {
-        json[@"card"] = [self imageBase64String:image];
+        json[@"image"] = [self imageBase64String:image];
     } else if ([image isKindOfClass:[NSString class]]) {
         json[@"url"] = image;
     }
