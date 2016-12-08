@@ -81,7 +81,7 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 	secret_key 授权secret_key
 	end_point  域名（开放平台接口访问域名为：https://api.youtu.qq.com/，人脸核身接口访问域名为：https://vip-api.youtu.qq.com/）
 
-###开放平台免费接口
+###开放平台免费接口说明
 	人脸检测，检测给定图片(Image)中的所有人脸(Face)的位置和相应的面部属性。位置包括(x, y, w, h)， 面部属性包括性别(gender), 年龄(age), 表情(expression), 眼镜(glass)和姿态(pitch，roll，yaw).
 	- (void)detectFace:(id)image successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 	参数：
@@ -220,7 +220,7 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 
 
 ###人脸核身接口说明
-####人脸核身接口I访问域名为：https://vip-api.youtu.qq.com/，需要联系商务开通权限。
+####人脸核身接口访问域名为：https://vip-api.youtu.qq.com/，需要联系商务开通权限。
 
 	身份证OCR识别
 	- (void)idcardOcrFaceIn:(id)image cardType:(NSInteger)cardType successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
