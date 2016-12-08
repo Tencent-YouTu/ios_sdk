@@ -70,6 +70,8 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
     
 
 ##接口说明：
+####接口分为开放平台免费接口和人脸核身接口，人脸核身接口访问权限需要联系商务开通；开放平台接口访问域名为https://api.youtu.qq.com/， 人脸核身接口访问域名为https://vip-api.youtu.qq.com/
+
 
 	构造方法
 	- (id)initWithName:(NSString *)_appid authorization:(NSString *)_authorization endPoint:(NSString *)endpoint;
@@ -77,6 +79,7 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 	appid授权appid
 	Authorization　通过appid secretId和secretKey生成的鉴权密钥
 
+###开放平台免费接口
 	人脸检测，检测给定图片(Image)中的所有人脸(Face)的位置和相应的面部属性。位置包括(x, y, w, h)， 面部属性包括性别(gender), 年龄(age), 表情(expression), 眼镜(glass)和姿态(pitch，roll，yaw).
 	- (void)detectFace:(id)image successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 	参数：
@@ -182,45 +185,6 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 	image 输入图片
 	sessionId 请求序列号，用于流水查询
 
- 
-	身份证OCR识别
-	- (void)idcardOcrFaceIn:(id)image cardType:(NSInteger)cardType successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
-	参数：
-	image 输入图片
-	cardType 身份证图片类型，0-正面，1-反面
-
- 	人脸比对
-	- (void)faceCompareFaceIn:(id)imageA imageB:(id)imageB successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
-	参数：
-	imageA 输入图片A
-	imageB 输入图片B
-
-	人脸比对:使用优图数据源比对
-	- (void)idcardfacecompare:(NSString*)idCardNumber withName:(NSString*)idCardName image:(id)image successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
-	参数：
-	idCardNumber 用户身份证号码
-	idCardName 用户身份证姓名
-	image 输入图片
-
-	唇语获取
-	- (void)livegetfour:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
-
-	视频人脸核身:用户自带数据源核身
-	- (void)livedetectfour:(NSData*)video image:(id)image validateId:(NSString*) validateData isCompare:(BOOL)isCompare successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
-	参数：
-	video 需要检测的视频base64编码
-	validateData livegetfour得到的唇语验证数据
-	image 输入图片
-	imisCompare video中的照片和card是否做对比，True做对比，False不做对比
-
-	视频人脸核身:使用优图数据源核身
-	- (void)idcardlivedetectfour:(NSData*)video withId:(NSString*)idCardNumber withName:(NSString*)idCardName validateId:(NSString*) validateData successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
-	参数：
-	video 需要检测的视频base64编码
-	idCardNumber 用户身份证号码
-	idCardName 用户身份证姓名
-	validateData livegetfour得到的唇语验证数据
-
 
 	判断一个图像的模糊程度
 	- (void)fuzzyDetect:(id)image cookie:(NSString *)cookie seq:(NSString *)seq successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
@@ -250,6 +214,49 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 	image 输入图片
 	cookie 当imagePath为url时，需要的cookie信息
 	seq 请求序列号，用于流水查询
+
+
+
+###人脸核身接口说明
+####人脸核身接口I访问域名为：https://vip-api.youtu.qq.com/，需要联系商务开通权限。
+
+	身份证OCR识别
+	- (void)idcardOcrFaceIn:(id)image cardType:(NSInteger)cardType successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+	参数：
+	image 输入图片
+	cardType 身份证图片类型，0-正面，1-反面
+
+	人脸比对
+	- (void)faceCompareFaceIn:(id)imageA imageB:(id)imageB successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+	参数：
+	imageA 输入图片A
+	imageB 输入图片B
+
+	人脸比对:使用优图数据源比对
+	- (void)idcardfacecompare:(NSString*)idCardNumber withName:(NSString*)idCardName image:(id)image successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+	参数：
+	idCardNumber 用户身份证号码
+	idCardName 用户身份证姓名
+	image 输入图片
+
+	唇语获取
+	- (void)livegetfour:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+
+	视频人脸核身:用户自带数据源核身
+	- (void)livedetectfour:(NSData*)video image:(id)image validateId:(NSString*) validateData isCompare:(BOOL)isCompare successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+	参数：
+	video 需要检测的视频base64编码
+	validateData livegetfour得到的唇语验证数据
+	image 输入图片
+	isCompare video中的照片和card是否做对比，True做对比，False不做对比
+
+	视频人脸核身:使用优图数据源核身
+	- (void)idcardlivedetectfour:(NSData*)video withId:(NSString*)idCardNumber withName:(NSString*)idCardName validateId:(NSString*) validateData successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+	参数：
+	video 需要检测的视频base64编码
+	idCardNumber 用户身份证号码
+	idCardName 用户身份证姓名
+	validateData livegetfour得到的唇语验证数据
 
 
 
