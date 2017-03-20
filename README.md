@@ -18,7 +18,7 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
   2. 在http://open.youtu.qq.com/welcome/developer#/api-summary 阅读发送参数、返回结果含义
   3. 请联系我们
   
-##注意：
+## 注意：
 
 	人脸核身相关接口，需要申请权限接入，具体参考http://open.youtu.qq.com/welcome/service#/solution-facecheck
 	人脸核身接口包括：
@@ -30,7 +30,7 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 	- (void)idcardlivedetectfour:(NSData*)video withId:(NSString*)idCardNumber withName:(NSString*)idCardName validateId:(NSString*) validateData successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 	
 
-##名词：
+## 名词：
 
 - AppId 平台添加应用后分配的AppId
 - SecretId 平台添加应用后分配的SecretId
@@ -71,9 +71,9 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
     }];
     
 
-##接口说明：
+## 接口说明：
 
-####接口分为开放平台免费接口和人脸核身接口，人脸核身接口访问权限需要联系商务开通；开放平台接口访问域名为https://api.youtu.qq.com/， 人脸核身接口访问域名为https://vip-api.youtu.qq.com/
+#### 接口分为开放平台免费接口和人脸核身接口，人脸核身接口访问权限需要联系商务开通；开放平台接口访问域名为https://api.youtu.qq.com/， 人脸核身接口访问域名为https://vip-api.youtu.qq.com/
 
 
 	构造方法
@@ -84,7 +84,7 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 	secret_key 授权secret_key
 	end_point  域名（开放平台接口访问域名为：https://api.youtu.qq.com/，人脸核身接口访问域名为：https://vip-api.youtu.qq.com/）
 
-###开放平台免费接口说明
+### 开放平台免费接口说明
 
 	人脸检测，检测给定图片(Image)中的所有人脸(Face)的位置和相应的面部属性。位置包括(x, y, w, h)， 面部属性包括性别(gender), 年龄(age), 表情(expression), 眼镜(glass)和姿态(pitch，roll，yaw).
 	- (void)detectFace:(id)image successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
@@ -223,9 +223,9 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 
 
 
-###人脸核身接口说明
+### 人脸核身接口说明
 
-####人脸核身接口访问域名为：https://vip-api.youtu.qq.com/，需要联系商务开通权限。
+#### 人脸核身接口访问域名为：https://vip-api.youtu.qq.com/，需要联系商务开通权限。
 
 	身份证OCR识别
 	- (void)idcardOcrFaceIn:(id)image cardType:(NSInteger)cardType successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
