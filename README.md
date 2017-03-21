@@ -23,6 +23,7 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 	人脸核身相关接口，需要申请权限接入，具体参考http://open.youtu.qq.com/welcome/service#/solution-facecheck
 	人脸核身接口包括：
 	- (void)idcardOcrFaceIn:(id)image cardType:(NSInteger)cardType successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+	- (void)idcardNameFaceIn:(NSString*)id_num cardName:(NSString*)id_name successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 	- (void)faceCompareFaceIn:(id)imageA imageB:(id)imageB successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 	- (void)idcardfacecompare:(NSString*)idCardNumber withName:(NSString*)idCardName image:(id)image successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 	- (void)livegetfour:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
@@ -232,6 +233,12 @@ demo展示如何调用优图开放平台API接口，网络请求返回的数据�
 	参数：
 	image 输入图片
 	cardType 身份证图片类型，0-正面，1-反面
+	
+  	身份证实名认证
+	- (void)idcardNameFaceIn:(NSString*)id_num cardName:(NSString*)id_name successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+	参数：
+	id_num 用户身份证号码
+	id_name 用户身份证姓名
 
 	人脸比对
 	- (void)faceCompareFaceIn:(id)imageA imageB:(id)imageB successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;

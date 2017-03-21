@@ -281,6 +281,16 @@
     [self sendRequest:json mothod:@"/ocrapi/idcardocr" successBlock:successBlock failureBlock:failureBlock];
 }
 
+- (void)idcardNameFaceIn:(NSString*)id_num cardName:(NSString*)id_name successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock
+{
+    
+    NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:10];
+    
+    json[@"idcard_number"] = id_num;
+    json[@"idcard_name"] = id_name;
+    [self sendRequest:json mothod:@"/openliveapi/validateidcard" successBlock:successBlock failureBlock:failureBlock];
+}
+
 - (void)faceCompareFaceIn:(id)imageA imageB:(id)imageB successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock
 {
     

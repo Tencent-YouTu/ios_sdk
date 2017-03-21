@@ -12,6 +12,7 @@
 //人脸核身相关接口，需要申请权限接入，具体参考http://open.youtu.qq.com/welcome/service#/solution-facecheck
 //人脸核身接口包括：
 //- (void)idcardOcrFaceIn:(id)image cardType:(NSInteger)cardType successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+//- (void)idcardNameFaceIn:(NSString*)id_num cardName:(NSString*)id_name successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 //- (void)faceCompareFaceIn:(id)imageA imageB:(id)imageB successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 //- (void)idcardfacecompare:(NSString*)idCardNumber withName:(NSString*)idCardName image:(id)image successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 //- (void)livegetfour:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
@@ -49,28 +50,28 @@
     
     self.title = @"优图";
     
-//    [self testFacein];
+    [self testFacein];
     
     NSString *auth = [Auth appSign:1000000 userId:nil];
     TXQcloudFrSDK *sdk = [[TXQcloudFrSDK alloc] initWithName:[Conf instance].appId authorization:auth endPoint:[Conf instance].API_END_POINT];
     
 //    UIImage *local = [UIImage imageNamed:@"id.jpg"];
-    UIImage *local = [UIImage imageNamed:@"id.jpg"];
+    UIImage *local = [UIImage imageNamed:@"id3.jpg"];
     NSString *remote = @"http://a.hiphotos.baidu.com/image/pic/item/42166d224f4a20a4be2c49a992529822720ed0aa.jpg";
     id image = local;
 
-    [sdk detectFace:image successBlock:^(id responseObject) {
-        NSLog(@"responseObject: %@", responseObject);
-    } failureBlock:^(NSError *error) {
-        NSLog(@"error");
-    }];
-//
+//    [sdk detectFace:image successBlock:^(id responseObject) {
+//        NSLog(@"responseObject: %@", responseObject);
+//    } failureBlock:^(NSError *error) {
+//        NSLog(@"error");
+//    }];
+
 //    [sdk idcardOcr:image cardType:0 sessionId:nil successBlock:^(id responseObject) {
 //        NSLog(@"idcardOcr: %@", responseObject);
 //    } failureBlock:^(NSError *error) {
 //        
 //    }];
-//
+
 //    [sdk namecardOcr:image sessionId:nil successBlock:^(id responseObject) {
 //        NSLog(@"namecardOcr: %@", responseObject);
 //    } failureBlock:^(NSError *error) {
@@ -111,12 +112,22 @@
     NSString *remote = @"http://a.hiphotos.baidu.com/image/pic/item/42166d224f4a20a4be2c49a992529822720ed0aa.jpg";
     id image = local;
     
+    [sdk idcardOcrFaceIn:image cardType:0 successBlock:^(id responseObject) {
+        NSLog(@"idcardOcrFaceIn: %@", responseObject);
+    }failureBlock:^(NSError *error) {
+        NSLog(@"error");
+    }];
     
-        [sdk idcardOcrFaceIn:image cardType:0 successBlock:^(id responseObject) {
-                    NSLog(@"idcardOcrFaceIn: %@", responseObject);
-        }failureBlock:^(NSError *error) {
-                    NSLog(@"error");
-        }];
+    NSString *idNumber = @"12345678901234567";
+    NSString *idName = @"李磊";
+    [sdk idcardNameFaceIn:idNumber cardName:idName successBlock:^(id responseObject) {
+        NSLog(@"idcardNameFaceIn: %@", responseObject);
+    } failureBlock:^(NSError *error) {
+        NSLog(@"error");
+    }];
+    
+    
+
     //
     //    [sdk faceCompareFaceIn:image imageB:remote successBlock:^(id responseObject) {
     //        NSLog(@"faceCompareFaceIn: %@", responseObject);

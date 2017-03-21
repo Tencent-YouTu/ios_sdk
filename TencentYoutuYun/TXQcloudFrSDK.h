@@ -209,6 +209,16 @@ typedef void(^HttpRequestFailBlock)(NSError *error);
  *            身份证图片类型，0-正面，1-反面
  */
 - (void)idcardOcrFaceIn:(id)image cardType:(NSInteger)cardType successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
+
+/*!
+ * 身份证实名认证-----人脸核身相关接口
+ *
+ * @input id_num
+ *            用户身份证号码
+ * @input id_name
+ *            用户身份证姓名
+ */
+- (void)idcardNameFaceIn:(NSString*)id_num cardName:(NSString*)id_name successBlock:(HttpRequestSuccessBlock)successBlock failureBlock:(HttpRequestFailBlock)failureBlock;
 /*!
  * 人脸比对-----人脸核身相关接口
  *
